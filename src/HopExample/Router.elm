@@ -1,5 +1,7 @@
-module HopExample.Router (Route(..), router, rootPath, recordPath) where
+module HopExample.Router (Route(..), router, linkTo, rootPath, recordPath) where
 
+import Html exposing (Html, Attribute, a)
+import Html.Attributes exposing (href)
 import Hop
 import Hop.Matchers exposing (int, match1, match2)
 import Hop.Navigate exposing (navigateTo)
@@ -33,6 +35,11 @@ matchers =
   [ match1 HomeRoute ""
   , match2 RecordRoute "/records/" int
   ]
+
+
+linkTo : String -> List Attribute -> List Html -> Html
+linkTo path attrs inner =
+  a ((href path) :: attrs) inner
 
 
 rootPath : String

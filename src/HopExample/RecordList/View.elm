@@ -2,7 +2,7 @@ module HopExample.RecordList.View (view) where
 
 import Html exposing (..)
 import Html.Attributes exposing (href)
-import HopExample.Router exposing (recordPath)
+import HopExample.Router exposing (recordPath, linkTo)
 import HopExample.Record.View
 import HopExample.Record.Model
 import HopExample.RecordList.Model exposing (Model)
@@ -19,7 +19,7 @@ renderRecord : HopExample.Record.Model.Model -> Html
 renderRecord record =
   let
     linkToRecord =
-      (\html -> a [ href <| recordPath record ] [ html ])
+      (\html -> linkTo (recordPath record) [] [ html ])
   in
     li
       []
