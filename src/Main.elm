@@ -3,8 +3,9 @@ module Main (..) where
 import Effects exposing (Never)
 import Task exposing (Task)
 import StartApp
-import HopExample.App.Update exposing (Action, init, update)
+import HopExample.App.Update exposing (Action(ApplyRoute), init, update)
 import HopExample.App.View exposing (view)
+import HopExample.Router exposing (router)
 
 
 app =
@@ -22,7 +23,17 @@ main =
 
 inputs : List (Signal Action)
 inputs =
-  []
+  [ hopRouteSignal ]
+
+
+hopRouteSignal : Signal Action
+hopRouteSignal =
+  Signal.map ApplyRoute router.signal
+
+
+port routeRunTask : Task () ()
+port routeRunTask =
+  router.run
 
 
 port tasks : Signal (Task Never ())
