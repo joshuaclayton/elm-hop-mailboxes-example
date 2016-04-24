@@ -7,7 +7,7 @@ import HopExample.App.Model exposing (Model)
 import HopExample.RecordList.Model exposing (findRecordById)
 import HopExample.RecordList.View
 import HopExample.Record.View
-import HopExample.Router exposing (Route(..))
+import HopExample.Router exposing (Route(..), rootPath)
 
 
 view : Signal.Address Action -> Model -> Html
@@ -56,7 +56,7 @@ pageHeader =
     []
     [ h1
         []
-        [ a [ href "/" ] [ text "Hop + Mailboxes Example App" ]
+        [ a [ href rootPath ] [ text "Hop + Mailboxes Example App" ]
         ]
     ]
 
