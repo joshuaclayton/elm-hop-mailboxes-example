@@ -11,18 +11,17 @@ This is an [Elm] application demonstrating [Mailboxes] and [Hop].
 Ensure Elm is installed; next, install the dependencies:
 
 ```sh
+npm install
 elm package install
 ```
 
-To view the application in a browser, use [Elm Reactor]:
+To view the application in a browser, use NPM:
 
 ```sh
-elm-reactor
+npm start
 ```
 
-And then navigate to `src/Main.elm`.
-
-[Elm Reactor]: https://github.com/elm-lang/elm-reactor
+And then open http://localhost:8080.
 
 ## License
 
