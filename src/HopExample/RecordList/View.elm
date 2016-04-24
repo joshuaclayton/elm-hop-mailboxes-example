@@ -1,6 +1,7 @@
 module HopExample.RecordList.View (view) where
 
 import Html exposing (..)
+import Html.Attributes exposing (href)
 import HopExample.Record.View
 import HopExample.Record.Model
 import HopExample.RecordList.Model exposing (Model)
@@ -15,6 +16,10 @@ view model =
 
 renderRecord : HopExample.Record.Model.Model -> Html
 renderRecord record =
-  li
-    []
-    [ HopExample.Record.View.view record ]
+  let
+    linkToRecord =
+      (\html -> a [ href <| "/records/" ++ (record.id |> toString) ] [ html ])
+  in
+    li
+      []
+      [ HopExample.Record.View.view linkToRecord record ]

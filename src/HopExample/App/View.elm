@@ -4,7 +4,9 @@ import Html exposing (..)
 import Html.Attributes exposing (href)
 import HopExample.App.Update exposing (Action)
 import HopExample.App.Model exposing (Model)
+import HopExample.RecordList.Model exposing (findRecordById)
 import HopExample.RecordList.View
+import HopExample.Record.View
 import HopExample.Router exposing (Route(..))
 
 
@@ -28,17 +30,35 @@ pageConent address model =
       h3 [] [ text "Loading..." ]
 
     NotFoundRoute ->
-      h3 [] [ text "Page Not Found" ]
+      notFound
 
     RecordRoute id ->
-      h3 [] [ text "Record Page" ]
+      let
+        recordResult =
+          HopExample.RecordList.Model.findRecordById model.recordList id
+      in
+        case recordResult of
+          Just model' ->
+            HopExample.Record.View.view identity model'
+
+          Nothing ->
+            notFound
+
+
+notFound : Html
+notFound =
+  h3 [] [ text "Page Not Found" ]
 
 
 pageHeader : Html
 pageHeader =
   header
     []
-    [ h1 [] [ text "Hop + Mailboxes Example App" ] ]
+    [ h1
+        []
+        [ a [ href "/" ] [ text "Hop + Mailboxes Example App" ]
+        ]
+    ]
 
 
 pageFooter : Html

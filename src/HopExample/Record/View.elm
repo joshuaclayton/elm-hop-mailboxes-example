@@ -4,10 +4,10 @@ import Html exposing (..)
 import HopExample.Record.Model exposing (Model)
 
 
-view : Model -> Html
-view model =
+view : (Html -> Html) -> Model -> Html
+view f model =
   section
     []
-    [ h2 [] [ text <| model.record ++ " by " ++ model.artist ]
+    [ f <| h2 [] [ text <| model.record ++ " by " ++ model.artist ]
     , p [] [ text <| "Released on " ++ (model.yearReleased |> toString) ]
     ]
