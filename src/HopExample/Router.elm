@@ -8,7 +8,7 @@ import Effects
 import Hop
 import Hop.Matchers exposing (int, match1, match2)
 import Hop.Navigate
-import Hop.Types exposing (Config, Router, PathMatcher, Location)
+import Hop.Types exposing (Config, Router, PathMatcher)
 import HopExample.Record.Model
 
 
@@ -37,7 +37,7 @@ router =
 routerConfig : Config Route
 routerConfig =
   { hash = False
-  , basePath = "/app"
+  , basePath = "/"
   , matchers = matchers
   , notFound = NotFoundRoute
   }
@@ -54,7 +54,7 @@ linkTo : String -> List Attribute -> List Html -> Html
 linkTo path attrs inner =
   let
     customLinkAttrs =
-      [ href <| "/app" ++ path
+      [ href path
       , onClick' routerMailbox.address path
       ]
   in
@@ -63,7 +63,7 @@ linkTo path attrs inner =
 
 rootPath : String
 rootPath =
-  ""
+  "/"
 
 
 recordPath : HopExample.Record.Model.Model -> String
